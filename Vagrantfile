@@ -28,7 +28,9 @@ Vagrant.configure("2") do |config|
     #   # Customize the amount of memory on the VM:
        vb.memory = "1024"
     end
-    web.vm.provision :shell, path: "bootstrap.sh"
+
+
+    #    web.vm.provision :shell, path: "bootstrap.sh"
   end
 
   config.vm.define "db" do |db|
@@ -44,6 +46,10 @@ Vagrant.configure("2") do |config|
     end
   end
 
+#Ansible configuration
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ansible/playbook.yml"
+  end
 
 
   # Disable automatic box update checking. If you disable this, then
